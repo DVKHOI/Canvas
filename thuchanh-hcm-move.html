@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas
+      id="myCanvas"
+      width="600px"
+      height="300px"
+      style="border: 1px solid #d3d3d3"
+    ></canvas>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+  </body>
+  <script>
+    let ctx = document.getElementById("myCanvas").getContext("2d");
+    let interval;
+    let y = 10;
+    let speed = 10;
+    function draw(y) {
+      if (y == 250 || y === 10) {
+        speed = -speed;
+      }
+      ctx.fillRect(100, y, 100, 40);
+      ctx.fillStyle = "red";
+    }
+    function move() {
+      y += speed;
+    }
+    function run() {
+      ctx.clearRect(0, 0, 600, 300);
+      move();
+      draw(y);
+    }
+    function start() {
+      interval = setInterval(run, 50);
+    }
+    function stop() {
+      clearInterval(interval);
+    }
+  </script>
+</html>
